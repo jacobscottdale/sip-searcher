@@ -1,4 +1,4 @@
-#Cocktail App
+# Cocktail App
 Simple search to find cocktail recipes.
 
 ## Introduction
