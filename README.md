@@ -21,7 +21,7 @@ Project uses:
 ** Users should
 
 ## Acknowledgements
-Thanks of course to the developers behind (The Cocktail DB)[https://www.thecocktaildb.com/], which this app consumes indirectly through (my own server)[https://github.com/jacobscottdale/api-proxy].
+Thanks of course to the developers behind [The Cocktail DB](https://www.thecocktaildb.com/), which this app consumes indirectly through [my own server](https://github.com/jacobscottdale/api-proxy).
 
 ## Setup
 To run this project, install it locally using npm:
