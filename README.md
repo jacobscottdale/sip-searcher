@@ -17,8 +17,8 @@ Project uses:
 
 ## Next Steps
 * Add user authentication functionality 
-** Users should be able to saving favorite cocktails to their profile
-** Users should
+  * Users should be able to save favorite cocktails to their profile
+  * Users should be able to tweak, customize and share their own recipes
 
 ## Acknowledgements
 Thanks of course to the developers behind [The Cocktail DB](https://www.thecocktaildb.com/), which this app consumes indirectly through [my own server](https://github.com/jacobscottdale/api-proxy).
