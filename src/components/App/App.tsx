@@ -1,32 +1,18 @@
-import { request } from 'http';
 import { FC, useEffect, useState, FormEvent } from 'react';
 import { useAxios } from '../../hooks/useAxios';
 import SearchBar from '../SearchBar/SearchBar';
+import FilterLists from '../../models/filterLists'
+import Drink from '../../models/drink';
+import DrinkDetail from '../../models/drinkDetail';
 import './App.css';
 
 type SubmitEvent = FormEvent<HTMLFormElement>
 
-export interface FilterLists {
-  ingredients: string[]
-  glasses: string[]
-}
 
-export interface Drink {
-  id: string
-  name: string
-  thumbnailURL: string
-}
 
-export interface DrinkDetail extends Drink {
-  category: string
-  tags: string[]
-  IBA: string
-  glass: string
-  instructions: string
-  alcoholic: true
-  ingredients: string[]
-  measure: string[]
-}
+
+
+
 
 interface ResultsList {
   drinks: Drink[] | DrinkDetail[]
@@ -46,7 +32,7 @@ const App: FC = () =>
 
   const [ glassesList, setGlassesList ] = useState<string[]>([])
 
-  const [ results, setResults ] = useState<Drink[] | []>([])
+  const [ results, setResults ] = useState<Drink[] | DrinkDetail[]>([])
 
   useEffect(() =>
   {
@@ -59,14 +45,15 @@ const App: FC = () =>
     }
   }, [])
 
-  const [ resultsLoading, resultsData, resultsError, resultsRequest ] = useAxios<ResultsList>(searchRoute, searchTerm)
+  const [ resultsLoading, resultsData, resultsError, resultsRequest ] = useAxios<Drink[] | DrinkDetail[]>(searchRoute, searchTerm)
 
   const handleSubmit = (e: SubmitEvent) =>
   {
-    e.preventDefault()
-    drinkRequest()
-    setResults(resultsData.drinks)
-    console.log(results)
+    // const newResults = resultsData.drinks
+    // e.preventDefault()
+    // drinkRequest()
+    // setResults(newResults)
+    // console.log(results)
   }
 
   return (

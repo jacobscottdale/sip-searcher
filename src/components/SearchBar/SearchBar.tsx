@@ -1,5 +1,6 @@
 import { ChangeEvent, FC, FormEvent } from 'react';
-import { Drink, DrinkDetail, FilterLists } from '../App/App';
+import Drink from '../../models/drink'
+import DrinkDetail from '../../models/drinkDetail';
 import './SearchBar.css';
 
 type SubmitEvent = FormEvent<HTMLFormElement>
