@@ -1,37 +1,21 @@
-import { ChangeEvent, FC, FormEvent } from 'react';
-import Drink from '../../models/drink'
-import DrinkDetail from '../../models/drinkDetail';
+import { ChangeEvent, FC, FormEvent, useContext, useState } from 'react';
+import { CocktailContext } from '../../store/cocktail-context';
 import './SearchBar.css';
 
 type SubmitEvent = FormEvent<HTMLFormElement>
 
 type InputEvent = ChangeEvent<HTMLInputElement>
 
-type Props =
-  {
-    results: Drink[] | DrinkDetail[]
-    setResults: (val: []) => void
-    searchTerm: string
-    setSearchTerm: (val: string) => void
-    searchRoute: string
-    setSearchRoute: (val: string) => void
-    handleSubmit: (e: SubmitEvent) => void
-    ingredientsList: string[]
-    glassesList: string[]
-  }
-
-const SearchBar: FC<Props> = ({
-  results,
-  setResults,
-  searchTerm,
-  setSearchTerm,
-  searchRoute,
-  setSearchRoute,
-  handleSubmit,
-  ingredientsList,
-  glassesList
-}) =>
+const SearchBar: FC = () =>
 {
+  const cocktailCtx = useContext(CocktailContext)
+
+  const [searchQuery, setSearchQuery] = useState<string>('')
+
+  const handleSubmit = (e: SubmitEvent) => {
+    e.preventDefault()
+    cocktailCtx.updateQuery(searchQuery)
+  }
   return (
     <form id='search-bar' onSubmit={handleSubmit}>
 
@@ -40,8 +24,8 @@ const SearchBar: FC<Props> = ({
         id='cocktail-search'
         name='cocktail-search'
         type='text'
-        value={searchTerm}
-        onChange={(e: InputEvent) => setSearchTerm(e.target.value)}
+        value={searchQuery}
+        onChange={(e: InputEvent) => setSearchQuery(e.target.value)}
       />
 
       <button type='submit'>Search</button>

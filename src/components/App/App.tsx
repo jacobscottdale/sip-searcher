@@ -1,75 +1,51 @@
-import { FC, useEffect, useState, FormEvent } from 'react';
+import { FC, useEffect, useContext } from 'react';
+import { Route, Routes, Link } from 'react-router-dom'
+import { CocktailContext } from '../../store/cocktail-context'
 import { useAxios } from '../../hooks/useAxios';
-import SearchBar from '../SearchBar/SearchBar';
-import FilterLists from '../../models/filterLists'
-import Drink from '../../models/drink';
-import DrinkDetail from '../../models/drinkDetail';
+import Search from '../../components/Search/Search'
+import ItemDetail from '../../components/ItemDetail/ItemDetail'
+import FilterList from '../../models/filterList'
+import Results from '../../models/results';
 import './App.css';
-
-type SubmitEvent = FormEvent<HTMLFormElement>
-
-
-
-
-
-
-
-interface ResultsList {
-  drinks: Drink[] | DrinkDetail[]
-}
 
 const App: FC = () =>
 {
-  const [ filterLoading, filterData, filterError, filterRequest ] = useAxios<FilterLists | undefined>('list/')
+  const cocktailCtx = useContext(CocktailContext)
 
-  const [ searchTerm, setSearchTerm ] = useState<string>('')
+  const { loading: filterLoading, data: filterData, error: filterError } = useAxios<FilterList>('/list/')
 
-  const [ searchRoute, setSearchRoute ] = useState<string>('drink/')
-
-  const [ drinkLoading, drinkData, drinkError, drinkRequest ] = useAxios<ResultsList>(searchRoute, searchTerm)
-
-  const [ ingredientsList, setIngredientsList ] = useState<string[]>([])
-
-  const [ glassesList, setGlassesList ] = useState<string[]>([])
-
-  const [ results, setResults ] = useState<Drink[] | DrinkDetail[]>([])
+  const { loading: searchLoading, data: searchData, error: searchError, request: searchRequest } = useAxios<{ drinks: Results }>('/drink/', cocktailCtx.query, false)
 
   useEffect(() =>
   {
-    filterRequest()
-    if (!filterLoading) {
-      if (filterData) {
-        setIngredientsList(filterData.ingredients)
-        setGlassesList(filterData.glasses)
-      }
+    if (filterData) {
+      cocktailCtx.updateFilterList({
+        ingredients: filterData.ingredients,
+        glasses: filterData.glasses
+      })
     }
-  }, [])
 
-  const [ resultsLoading, resultsData, resultsError, resultsRequest ] = useAxios<Drink[] | DrinkDetail[]>(searchRoute, searchTerm)
+  }, [ filterData ])
 
-  const handleSubmit = (e: SubmitEvent) =>
+  useEffect(() =>
   {
-    // const newResults = resultsData.drinks
-    // e.preventDefault()
-    // drinkRequest()
-    // setResults(newResults)
-    // console.log(results)
-  }
+    searchRequest(cocktailCtx.query)
+  }, [ cocktailCtx.query ])
+
+  useEffect(() =>
+  {
+    if (searchData !== null) {
+      cocktailCtx.updateResults(searchData.drinks)
+      console.log(searchData)
+    }
+  }, [ searchData ])
 
   return (
-    <>
-      <SearchBar
-        searchTerm={searchTerm}
-        setSearchTerm={setSearchTerm}
-        searchRoute={searchRoute}
-        setSearchRoute={setSearchRoute}
-        results={results}
-        setResults={setResults}
-        handleSubmit={handleSubmit}
-        ingredientsList={ingredientsList}
-        glassesList={glassesList}
-      />
-    </>
+    <Routes>
+      <Route path='/' element={<Search/>}/>
+      
+      <Route path='/drink/:id' element={<ItemDetail/>}/>
+    </Routes>
   );
 }
 

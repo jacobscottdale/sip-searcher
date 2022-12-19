@@ -1,35 +1,38 @@
 import axios from 'axios'
 import config from '../config'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 
 axios.defaults.baseURL = config.baseURL
 
 export const useAxios = <T>(
-  route: string,
+  url: string,
   query: string = '',
   loadOnStart: boolean = true
-): [ boolean, T | undefined, string, () => void ] =>
+):
+  {
+    loading: boolean,
+    data: T | null,
+    error: string,
+    request: (updatedQuery: string) => void
+  } =>
 {
-  const [ loading, setLoading ] = useState(true)
-  const [ data, setData ] = useState<T>()
+  const [ loading, setLoading ] = useState<boolean>(false)
+  const [ data, setData ] = useState<T | null>(null)
   const [ error, setError ] = useState('')
 
   useEffect(() =>
   {
-    if (loadOnStart) sendRequest()
+    if (loadOnStart) sendRequest(url, query)
     else setLoading(false)
-  }, [])
+  }, [ url, query, loadOnStart ])
 
-  const request = () =>
+  const sendRequest = async (url: string, query: string) =>
   {
-    sendRequest()
-  }
-
-  const sendRequest = async () =>
-  {
+    console.log('request')
     setLoading(true)
     try {
-      const res = await axios.get(route + query)
+      console.log(url + query)
+      const res = await axios.get(url + query)
       setError('')
       setData(res.data)
     }
@@ -42,5 +45,7 @@ export const useAxios = <T>(
     }
   }
 
-  return [ loading, data, error, request ]
+  const request = useCallback((updatedQuery) => sendRequest(url, updatedQuery), [ url ])
+
+  return { loading, data, error, request }
 }

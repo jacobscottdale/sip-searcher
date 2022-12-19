@@ -1,7 +1,6 @@
-interface FilterLists
+interface FilterList
 {
   ingredients: string[];
   glasses: string[];
-
 }
-export default FilterLists
+export default FilterList

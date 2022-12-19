@@ -1,10 +1,20 @@
 import { FC } from 'react';
-  import './ResultItem.css';
+import { Link } from 'react-router-dom'
+import './ResultItem.css';
 
-const ResultItem: FC = () => {
+type Props = {
+  id: string
+  name: string
+  thumbnailUrl: string
+}
+
+const ResultItem: FC<Props> = ({
+  id, name, thumbnailUrl
+}) => {
 	return (
-		<div className='ResultItem'>
-		</div>
+		<li className='ResultItem'>
+      <Link to={'/drink/' + id}>{name}</Link>
+		</li>
 	);
 }
 
