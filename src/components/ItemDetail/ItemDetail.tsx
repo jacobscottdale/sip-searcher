@@ -9,17 +9,20 @@ const ItemDetail: FC = () => {
 
   const [ itemDetails, setItemDetails ] = useState<DrinkDetail | null>(null)
 
-  const { loading: detailLoading, data: detailData, error: detailError, request: detailRequest } = useAxios<DrinkDetail>('/id/', params.id, true)
+  const { loading: detailLoading, data: detailData, error: detailError, request: detailRequest } = useAxios<{drinks: DrinkDetail[]}>('/id/', params.id, true)
 
   useEffect(() => {
-    setItemDetails(detailData)
+    if (detailData) {
+      setItemDetails(detailData?.drinks[0])
+    }
   }, [ detailData ])
 
   // Add working conditional rendering
 
 	return (
 		<div className='ItemDetail'>
-      {detailData && detailData?.IBA}
+      {!itemDetails && 'loading'}
+      {itemDetails && itemDetails?.name}
 		</div>
 	);
 }
