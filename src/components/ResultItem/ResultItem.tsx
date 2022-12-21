@@ -1,5 +1,5 @@
-import { FC } from 'react';
-import { Link } from 'react-router-dom'
+import { FC, useContext } from 'react';
+import { CocktailContext } from '../../store/cocktail-context';
 import './ResultItem.css';
 
 type Props = {
@@ -10,12 +10,19 @@ type Props = {
 
 const ResultItem: FC<Props> = ({
   id, name, thumbnailUrl
-}) => {
-	return (
-		<li className='ResultItem'>
-      <Link to={'/drink/' + id}>{name}</Link>
-		</li>
-	);
+}) =>
+{
+  const cocktailCtx = useContext(CocktailContext)
+
+  const updateActiveItemIdHandler = () => {
+    cocktailCtx.updateActiveItemId(id)
+  }
+
+  return (
+    <div className='ResultItem' onClick={updateActiveItemIdHandler}>
+        {name}
+    </div>
+  );
 }
 
 export default ResultItem;

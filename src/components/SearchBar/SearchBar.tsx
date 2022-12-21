@@ -10,26 +10,38 @@ const SearchBar: FC = () =>
 {
   const cocktailCtx = useContext(CocktailContext)
 
-  const [searchQuery, setSearchQuery] = useState<string>('')
+  const [ searchQuery, setSearchQuery ] = useState<string>('')
 
-  const handleSubmit = (e: SubmitEvent) => {
+  const handleSubmit = (e: SubmitEvent) =>
+  {
     e.preventDefault()
     cocktailCtx.updateQuery(searchQuery)
   }
   return (
-    <form id='search-bar' onSubmit={handleSubmit}>
+    <div className="SearchBar">
+      <form
+        className='SearchBar_form'
+        id='search-bar-form'
+        onSubmit={handleSubmit}
+      >
+        <label className='SearchBar_searchLabel' htmlFor='search-input'>
+          Search:
+        </label>
+        <input
+          className='SearchBar_searchInput'
+          id='search-input'
+          name='cocktail-search'
+          type='text'
+          value={searchQuery}
+          onChange={(e: InputEvent) => setSearchQuery(e.target.value)}
+        />
 
-      <label htmlFor='cocktail-search'>Search:</label>
-      <input
-        id='cocktail-search'
-        name='cocktail-search'
-        type='text'
-        value={searchQuery}
-        onChange={(e: InputEvent) => setSearchQuery(e.target.value)}
-      />
+        <button className='SearchBar_submitButton' type='submit'>
+          Search
+        </button>
+      </form>
+    </div>
 
-      <button type='submit'>Search</button>
-    </form>
   );
 }
 

@@ -1,0 +1,14 @@
+.ResultsList {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-style: none none solid none;
+}
+
+.ResultsList_list {
+  padding: 0;
+  margin: 0;
+}
+
+.ResultsList_item {
+  list-style: none;
+}

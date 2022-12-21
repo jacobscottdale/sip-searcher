@@ -6,19 +6,24 @@ import './ResultsList.css';
 const ResultsList: FC = () =>
 {
   const cocktailCtx = useContext(CocktailContext)
-  console.log(cocktailCtx.results)
 
   return (
-    <ul className='ResultsList'>
-      {cocktailCtx.results?.map(result =>
-        <ResultItem
-          key={result.id}
-          id={result.id}
-          name={result.name}
-          thumbnailUrl={result.thumbnailURL}
-        />
-      )}
-    </ul>
+    <div className="ResultsList">
+      <ul className='ResultsList_list'>
+        {cocktailCtx.results?.map(result => (
+          <li className='ResultsList_item' key={result.id}>
+            <ResultItem
+              key={result.id}
+              id={result.id}
+              name={result.name}
+              thumbnailUrl={result.thumbnailURL}
+            />
+          </li>
+        )
+        )}
+      </ul>
+    </div>
+
   );
 }
 

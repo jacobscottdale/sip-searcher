@@ -1,12 +1,12 @@
 import { FC, useEffect, useContext } from 'react';
-import { Route, Routes, Link } from 'react-router-dom'
 import { CocktailContext } from '../../store/cocktail-context'
 import { useAxios } from '../../hooks/useAxios';
-import Search from '../../components/Search/Search'
 import ItemDetail from '../../components/ItemDetail/ItemDetail'
 import FilterList from '../../models/filterList'
 import Results from '../../models/results';
 import './App.css';
+import SearchBar from '../SearchBar/SearchBar';
+import ResultsList from '../ResultsList/ResultsList';
 
 const App: FC = () =>
 {
@@ -29,7 +29,9 @@ const App: FC = () =>
 
   useEffect(() =>
   {
-    searchRequest(cocktailCtx.query)
+    if (cocktailCtx.query) {
+      searchRequest(cocktailCtx.query)
+    }
   }, [ cocktailCtx.query ])
 
   useEffect(() =>
@@ -41,11 +43,12 @@ const App: FC = () =>
   }, [ searchData ])
 
   return (
-    <Routes>
-      <Route path='/' element={<Search/>}/>
-      
-      <Route path='/drink/:id' element={<ItemDetail/>}/>
-    </Routes>
+    <div className='App'>
+      <SearchBar />
+      {cocktailCtx.results && <ResultsList />}
+      {cocktailCtx.activeItemId && <ItemDetail />}
+    </div>
+
   );
 }
 

@@ -1,6 +1,4 @@
-import React, { ChangeEvent, FormEvent, useState, createContext } from 'react'
-import Drink from '../models/drink'
-import DrinkDetail from '../models/drinkDetail'
+import React, { useState, createContext } from 'react'
 import FilterList from '../models/filterList'
 import Results from '../models/results'
 
@@ -11,7 +9,9 @@ type CocktailContextObj =
     query: string,
     updateQuery: (newQuery: string) => void,
     results: Results,
-    updateResults: (newResults: Results) => void
+    updateResults: (newResults: Results) => void,
+    activeItemId: string,
+    updateActiveItemId: (newId: string) => void
   }
 
 export const CocktailContext = createContext<CocktailContextObj>({
@@ -24,6 +24,8 @@ export const CocktailContext = createContext<CocktailContextObj>({
   updateQuery: () => {},
   results: null,
   updateResults: () => {},
+  activeItemId: '',
+  updateActiveItemId: () => {}
 })
 
 const CocktailContextProvider: React.FC<{ children?: React.ReactNode }> = props =>
@@ -50,6 +52,12 @@ const CocktailContextProvider: React.FC<{ children?: React.ReactNode }> = props 
     setResults(newResults)
   }
 
+  const [activeItemId, setActiveItemId] = useState<string>('')
+
+  const updateActiveItemIdHandler = (newId: string) => {
+    setActiveItemId(newId)
+  }
+
   const contextValue: CocktailContextObj = {
     filterList: filterList,
     updateFilterList: updateFilterListHandler,
@@ -57,6 +65,8 @@ const CocktailContextProvider: React.FC<{ children?: React.ReactNode }> = props 
     updateQuery: updateQueryHandler,
     results: results,
     updateResults: updateResultsHandler,
+    activeItemId: activeItemId,
+    updateActiveItemId: updateActiveItemIdHandler
   }
 
 

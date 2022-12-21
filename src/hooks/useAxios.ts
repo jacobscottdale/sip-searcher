@@ -38,14 +38,14 @@ export const useAxios = <T>(
     }
     catch (err: any) {
       setError(err.message)
-      console.log(error)
+      console.log(err.message)
     }
     finally {
       setLoading(false)
     }
   }
 
-  const request = useCallback((updatedQuery) => sendRequest(url, updatedQuery), [ url ])
+  const request = useCallback((updatedQuery) => sendRequest(url, updatedQuery), [ query ])
 
   return { loading, data, error, request }
 }

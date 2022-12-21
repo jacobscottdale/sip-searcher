@@ -1,0 +1,13 @@
+.SearchBar {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-style: solid none solid none;
+}
+
+.SearchBar_searchInput {
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.SearchBar_submitButton {
+  font-family: 'Courier New', Courier, monospace;
+}
