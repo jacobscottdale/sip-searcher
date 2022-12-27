@@ -24,21 +24,25 @@ const SearchBar: FC = () =>
         id='search-bar-form'
         onSubmit={handleSubmit}
       >
-        <label className='SearchBar_searchLabel' htmlFor='search-input'>
-          Search:
-        </label>
-        <input
-          className='SearchBar_searchInput'
-          id='search-input'
-          name='cocktail-search'
-          type='text'
-          value={searchQuery}
-          onChange={(e: InputEvent) => setSearchQuery(e.target.value)}
-        />
+        <div className="SearchBar_formContainer">
+          <label className='SearchBar_searchLabel' htmlFor='search-input'>
+            Search by cocktail name:
+          </label>
 
-        <button className='SearchBar_submitButton' type='submit'>
-          Search
-        </button>
+          <input
+            className='SearchBar_searchInput'
+            id='search-input'
+            name='cocktail-search'
+            type='text'
+            value={searchQuery}
+            onChange={(e: InputEvent) => setSearchQuery(e.target.value)}
+          />
+
+          <button className='SearchBar_submitButton' type='submit'>
+            Search
+          </button>
+        </div>
+
       </form>
     </div>
 

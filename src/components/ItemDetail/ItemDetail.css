@@ -4,6 +4,30 @@
   border-style: none none solid none;
 }
 
-.ItemDetail_thumbnail {
-  max-width: 180px;
+.ItemDetail_imgIngredientContainer {
+  display: flex;
+}
+
+.ItemDetail_imgContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 150px;
+  background-color: black;
+}
+
+.ItemDetail_img {
+  width: 100%;
+}
+
+.ItemDetail_ingredientsContainer {
+  padding-left: 10px;
+}
+
+.ItemDetail_ingredientsList {
+  padding: 0;
+}
+
+.ItemDetail_ingredient {
+  list-style: none;
 }

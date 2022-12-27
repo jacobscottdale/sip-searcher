@@ -14,13 +14,19 @@ const ResultItem: FC<Props> = ({
 {
   const cocktailCtx = useContext(CocktailContext)
 
-  const updateActiveItemIdHandler = () => {
+  const updateActiveItemIdHandler = () =>
+  {
     cocktailCtx.updateActiveItemId(id)
   }
 
   return (
-    <div className='ResultItem' onClick={updateActiveItemIdHandler}>
+    <div className='ResultItem'>
+      <span className='ResultItem_arrow'>
+        {`> `}
+      </span>
+      <button type='button' className='ResultItem_button' onClick={updateActiveItemIdHandler}>
         {name}
+      </button>
     </div>
   );
 }

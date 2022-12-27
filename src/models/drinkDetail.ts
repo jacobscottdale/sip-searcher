@@ -5,7 +5,7 @@ interface DrinkDetail extends Drink {
   tags: string[]
   IBA: string
   glass: string
-  instructions: string
+  instructions: string[]
   alcoholic: true
   ingredients: string[]
   measure: string[]

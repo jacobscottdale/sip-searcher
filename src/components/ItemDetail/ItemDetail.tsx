@@ -22,14 +22,36 @@ const ItemDetail: FC = () =>
 
   return (
     <div className='ItemDetail'>
-      <div className="ItemDetail_thumbnailContainer">
-        <img className='ItemDetail_thumbnail' src={itemDetails?.thumbnailURL} alt={itemDetails?.name} />
+      <div className="ItemDetail_imgIngredientContainer">
+        <div className="ItemDetail_imgContainer">
+          <img className='ItemDetail_img' src={itemDetails?.thumbnailURL} alt={itemDetails?.name} />
+        </div>
+        <div className="ItemDetail_ingredientsContainer">
+          <p>{itemDetails?.name}</p>
+          <p>Ingredients:</p>
+          <ul className="ItemDetail_ingredientsList">
+            {itemDetails?.ingredients.map((ingredient, idx) => (
+              <li className='ItemDetail_ingredient'>
+                - {(itemDetails.measure[ idx ] && itemDetails.measure[ idx ])} {' ' + ingredient}
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
-      <div className="ItemDetail_content">
-        <p>{itemDetails?.name}</p>
-        {itemDetails?.ingredients.map(((ingredient, idx) => (
-          <p>{(itemDetails.measure[idx] && itemDetails.measure[idx])} {ingredient}</p>
-        )))}
+
+      <div>
+        <p>Instructions:</p>
+        <ol className="ItemDetail_instructionsList">
+          {itemDetails?.instructions.map(instruction =>
+          {
+            if (instruction) {
+              return <li className='ItemDetail_instruction'>
+                {instruction}
+              </li>
+            }
+
+          })}
+        </ol>
       </div>
 
     </div>

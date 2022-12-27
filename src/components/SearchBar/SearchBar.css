@@ -4,10 +4,34 @@
   border-style: solid none solid none;
 }
 
+.SearchBar_formContainer {
+  display: flex;
+  flex-direction: column;
+}
+
 .SearchBar_searchInput {
-  font-family: 'Courier New', Courier, monospace;
+  box-sizing: border-box;
+  font-family: inherit;
+  background-color: transparent;
+  border: 1px solid black;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  width: 100%;
+  padding-left: 20px;
 }
 
 .SearchBar_submitButton {
-  font-family: 'Courier New', Courier, monospace;
+  width: 100px;
+  background-color: black;
+  color: white;
+  border: 1px black solid;
+  font-family: inherit;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  padding: 0;
+  cursor: pointer;
 }
