@@ -1,4 +1,4 @@
-import { FC, useContext, useEffect, useState } from 'react';
+import { FC, useContext } from 'react';
 import { CocktailContext } from '../../store/cocktail-context';
 import ResultItem from '../ResultItem/ResultItem';
 import './ResultsList.css';

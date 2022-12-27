@@ -32,6 +32,7 @@ const App: FC = () =>
     if (cocktailCtx.query) {
       searchRequest(cocktailCtx.query)
     }
+    cocktailCtx.updateActiveItemId('')
   }, [ cocktailCtx.query ])
 
   useEffect(() =>
