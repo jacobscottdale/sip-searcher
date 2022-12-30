@@ -13,7 +13,6 @@ const ResultsList: FC = () =>
         {cocktailCtx.results?.map(result => (
           <li className='ResultsList_item' key={result.id}>
             <ResultItem
-              key={result.id}
               id={result.id}
               name={result.name}
               thumbnailUrl={result.thumbnailURL}

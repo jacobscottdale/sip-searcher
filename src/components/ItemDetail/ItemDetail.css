@@ -1,23 +1,22 @@
 .ItemDetail {
+  display: flex;
+  flex-direction: column;
   padding-top: 10px;
   padding-bottom: 10px;
   border-style: none none solid none;
 }
 
 .ItemDetail_imgIngredientContainer {
-  display: flex;
+
 }
 
 .ItemDetail_imgContainer {
   display: flex;
-  flex-direction: column;
   justify-content: center;
-  max-width: 150px;
-  background-color: black;
 }
 
 .ItemDetail_img {
-  width: 100%;
+  max-width: 200px;
 }
 
 .ItemDetail_ingredientsContainer {
@@ -25,9 +24,13 @@
 }
 
 .ItemDetail_ingredientsList {
-  padding: 0;
+  padding-left: 20px;
 }
 
 .ItemDetail_ingredient {
-  list-style: none;
+  list-style-type: "- "
+}
+
+.ingredientMeasure {
+  font-weight: bold;
 }
