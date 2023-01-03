@@ -48,6 +48,7 @@ const App: FC = () =>
     <div className='App'>
       <SearchBar />
       {cocktailCtx.results && <ResultsList />}
+      {cocktailCtx.results && cocktailCtx.results.length < 1 && <p>No results</p>}
       {cocktailCtx.activeItemId && <ItemDetail />}
     </div>
 

@@ -22,16 +22,18 @@ const ItemDetail: FC = () =>
     <>
       {cocktailCtx.itemDetails &&
         <div className='ItemDetail'>
+          <h2 className='ItemDetail_name'>{cocktailCtx.itemDetails?.name}</h2>
           <div className="ItemDetail_imgIngredientContainer">
             <div className="ItemDetail_imgContainer">
               <img className='ItemDetail_img' src={cocktailCtx.itemDetails?.thumbnailURL} alt={cocktailCtx.itemDetails?.name} />
             </div>
             <div className="ItemDetail_ingredientsContainer">
-              <h2>{cocktailCtx.itemDetails?.name}</h2>
-              <p>Ingredients:</p>
+              <h3 className='ingredientsHeader'>
+                Ingredients:
+              </h3>
               <ul className="ItemDetail_ingredientsList">
                 {cocktailCtx.itemDetails?.ingredients.map((ingredient, idx) => (
-                  <li className='ItemDetail_ingredient' key={cocktailCtx.itemDetails?.id + ingredient}>
+                  <li className='ItemDetail_ingredient' key={cocktailCtx.itemDetails?.id + ingredient + cocktailCtx.itemDetails?.measure[ idx ] + idx}>
                     {(cocktailCtx.itemDetails?.measure[ idx ] &&
                       <span className='ingredientMeasure'>
                         {cocktailCtx.itemDetails.measure[ idx ]}
@@ -44,8 +46,10 @@ const ItemDetail: FC = () =>
             </div>
           </div>
 
-          <div>
-            <p>Instructions:</p>
+          <div className='ItemDetail_instructions'>
+            <h3 className='instructionsHeader'>
+              Instructions:
+            </h3>
             <ol className="ItemDetail_instructionsList">
               {cocktailCtx.itemDetails?.instructions.map(instruction =>
               {

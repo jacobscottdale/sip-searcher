@@ -1,4 +1,6 @@
-.ResultItem {}
+.ResultItem {
+
+}
 
 .ResultItem_button {
   background-color: transparent;
@@ -9,7 +11,14 @@
   font-weight: inherit;
   line-height: inherit;
   padding: 0;
+  margin: 0;
   cursor: pointer;
+}
+
+.ResultItem_arrow {
+  position: relative;
+  left: -20px;
+  transition: left 0.25s ease;
 }
 
 .ResultItem:hover {
@@ -20,8 +29,15 @@
   left: 0;
 }
 
-.ResultItem_arrow {
-  position: relative;
-  left: -20px;
-  transition: left 0.25s ease;
+.ResultItem:active .ResultItem_arrow {
+  left: 7px;
 }
+
+.ResultItem.active {
+  padding-left: 3px;
+}
+
+.ResultItem.active .ResultItem_arrow {
+  left: 7px;
+}
+

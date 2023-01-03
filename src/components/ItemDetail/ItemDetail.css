@@ -6,31 +6,76 @@
   border-style: none none solid none;
 }
 
-.ItemDetail_imgIngredientContainer {
-
+.ItemDetail_name {
+  margin-top: 0px;
+  margin-bottom: 10px;
+  padding-left: 10px;
 }
 
 .ItemDetail_imgContainer {
   display: flex;
   justify-content: center;
+  background-color: black;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .ItemDetail_img {
-  max-width: 200px;
+  height: 200px;
 }
 
 .ItemDetail_ingredientsContainer {
   padding-left: 10px;
 }
 
+.ingredientsHeader {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
 .ItemDetail_ingredientsList {
-  padding-left: 20px;
+  padding-left: 10px;
 }
 
 .ItemDetail_ingredient {
-  list-style-type: "- "
+  list-style-position: inside;
+  list-style-type: "- ";
+  margin-bottom: 5px;
 }
 
 .ingredientMeasure {
   font-weight: bold;
+}
+
+.ItemDetail_instructionsList {
+  list-style-position: inside;
+  padding-left: 10px;
+}
+
+.ItemDetail_instructions {
+  padding-left: 10px;
+}
+
+.ItemDetail_instruction {
+  margin-bottom: 5px;
+}
+
+.ItemDetail_instruction::marker {
+  font-weight: bold;
+}
+
+.instructionsHeader {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+@media only screen and (min-width: 480px) and (max-width: 768px) {
+  .ItemDetail_imgIngredientContainer {
+    display: flex;
+  }
+  
+  .ItemDetail_imgContainer {
+    width: 200px;
+    background-color: transparent;
+  }
 }

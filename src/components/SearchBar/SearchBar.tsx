@@ -16,6 +16,9 @@ const SearchBar: FC = () =>
   {
     e.preventDefault()
     cocktailCtx.updateQuery(searchQuery)
+    if (searchQuery === '') {
+      cocktailCtx.updateResults(null)
+    }
   }
   return (
     <div className="SearchBar">
@@ -25,15 +28,13 @@ const SearchBar: FC = () =>
         onSubmit={handleSubmit}
       >
         <div className="formContentContainer">
-          <label className='searchLabel' htmlFor='search-input'>
-            Search by cocktail name:
-          </label>
-
           <input
+            aria-label='search by cocktail name'
             className='searchInput'
             id='search-input'
             name='cocktail-search'
             type='text'
+            placeholder='Search by name'
             value={searchQuery}
             onChange={(e: InputEvent) => setSearchQuery(e.target.value)}
           />
