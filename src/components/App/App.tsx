@@ -47,9 +47,12 @@ const App: FC = () =>
   return (
     <div className='App'>
       <SearchBar />
-      {cocktailCtx.results && <ResultsList />}
-      {cocktailCtx.results && cocktailCtx.results.length < 1 && <p>No results</p>}
-      {cocktailCtx.activeItemId && <ItemDetail />}
+      <div className='ResultsContainer'>
+        {cocktailCtx.results && <ResultsList />}
+        {cocktailCtx.results && cocktailCtx.results.length < 1 && <p>No results</p>}
+        {cocktailCtx.activeItemId && <ItemDetail />}
+      </div>
+
     </div>
 
   );

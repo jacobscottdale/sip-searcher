@@ -69,7 +69,7 @@
   margin-bottom: 10px;
 }
 
-@media only screen and (min-width: 480px) and (max-width: 768px) {
+@media only screen and (min-width: 480px) {
   .ItemDetail_imgIngredientContainer {
     display: flex;
   }
@@ -77,5 +77,11 @@
   .ItemDetail_imgContainer {
     width: 200px;
     background-color: transparent;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .ItemDetail {
+    border-style: none solid none none;
   }
 }

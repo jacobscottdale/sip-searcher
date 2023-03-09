@@ -12,3 +12,10 @@
 .ResultsList_item {
   list-style: none;
 }
+
+@media only screen and (min-width: 768px) {
+  .ResultsList {
+    border-style: none solid none none;
+    width: 200px;
+  }
+}

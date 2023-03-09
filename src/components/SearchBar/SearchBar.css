@@ -47,9 +47,32 @@
   cursor: pointer;
 }
 
-@media only screen and (min-width: 480px) and (max-width: 768px) {
+@media only screen and (min-width: 480px) {
   .formContentContainer {
     margin-left: 50px;
     margin-right: 50px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .SearchBar {
+    border-style: none solid none none;
+  }
+
+  .searchInput {
+    width: auto;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .formContentContainer {
+    display: flex;
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+
+  .SearchBar_submitButton {
+    margin-left: 0;
+    margin-right: 0;
   }
 }
